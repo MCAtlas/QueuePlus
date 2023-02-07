@@ -33,7 +33,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 @Plugin(
-        id = "QueuePlus",
+        id = "queueplus",
         name = "QueuePlus",
         version = "0.0.1",
         description = "Queue Plus is a simple to use Queue Plugin designed for Velocity Proxies.",
