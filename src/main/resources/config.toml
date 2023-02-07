@@ -1,0 +1,51 @@
+# Queue plugin config
+
+[autoqueue]
+# Delay in seconds after which a player will get autoqueued.
+delay = 15
+# The server that will be chosen as the default autoqueue target.
+default-target = "server"
+autoqueue-server = "lobby"
+
+[database]
+# Available types: flatfile, sql
+type = "flatfile"
+# Sql settings
+host = "127.0.0.1"
+port = "3306"
+username = "root"
+password = "password"
+database_name = "queueplus"
+flags = ""
+
+[[priority]]
+name = "staff"
+weight = 6
+message = "<dark_green>Staff <green>access activated."
+
+[[priority]]
+name = "premium"
+weight = 5
+message = "<light_purple>Premium <green>access activated."
+
+[[priority]]
+name = "priority"
+weight = 1
+message = "<green>Priority access activated."
+
+# All queues have 'subqueues', a player's priority weight will decide which they enter.
+# The min-weight is the weight that a player's priority must have to enter this subqueue.
+[[subqueue]]
+name = "regular"
+min-weight = 0
+sends = 1
+
+[[subqueue]]
+name = "priority"
+min-weight = 1
+sends = 3
+
+[[subqueue]]
+name = "premium"
+min-weight = 5
+sends = 3
