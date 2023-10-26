@@ -36,19 +36,20 @@ public class JoinCommand extends BaseCommand implements SimpleCommand {
         }
 
         String server = invocation.arguments()[0];
+        Queue queue = plugin.queue(server);
+
+        if (queue == null) {
+            player.sendMessage(Component.text(server + " is not a valid server.", NamedTextColor.RED));
+            return;
+        }
+
         if (!hasPrefixedPermission(invocation.source(), "queue.join.", server)) {
-            source.sendMessage(Component.text(server + " is not a valid server.", NamedTextColor.RED));
+            source.sendMessage(Component.text("You do not have enough permission to join queue for " + server + ".", NamedTextColor.RED));
             return;
         }
 
         if (player.getCurrentServer().map(currentServer -> currentServer.getServerInfo().getName().equalsIgnoreCase(server)).orElse(false)) {
             player.sendMessage(Component.text("You are already connected to this server.", NamedTextColor.RED));
-            return;
-        }
-
-        Queue queue = plugin.queue(server);
-        if (queue == null) {
-            player.sendMessage(Component.text(server + " is not a valid server.", NamedTextColor.RED));
             return;
         }
 
